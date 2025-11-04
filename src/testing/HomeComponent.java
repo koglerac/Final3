@@ -4,8 +4,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Shape;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -22,6 +28,8 @@ public class HomeComponent extends JComponent {
 	public static final int HEIGHT = 900;
 	public boolean movingLeft, movingRight, movingUp, movingDown;
 	public boolean gameOver = false;
+	private boolean once= true;
+	private BufferedImage BGsprite;
 	Timer timer;
 
 	public HomeComponent() {
@@ -90,15 +98,34 @@ public class HomeComponent extends JComponent {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
+		if (once) {
+			System.out.println("sand");
+			GetSand();
+			once=false;
+		}
 		background(g2);
 		luke.draw(g2);
 		enemies.draw(g2);
         house.draw(g2);
 	}
 	
+	public void GetSand() {
+	    try {
+	        BGsprite = ImageIO.read(Luke.class.getResource("sand.png"));
+	        System.out.println("Background image loaded successfully!");
+	    } catch (IOException | IllegalArgumentException ex) {
+	        System.err.println("Failed to load sand.png: " + ex.getMessage());
+	        BGsprite = null;
+	    }
+	}
+
 	public void background(Graphics2D graphics2) {
-		graphics2.setColor(new Color(237,201,175));
-		graphics2.fillRect(0,0,WIDTH,HEIGHT);
+	    if (BGsprite != null) {
+	        graphics2.drawImage(BGsprite, 0, 0, 1500, 900, null);
+	    } else {
+	        graphics2.setColor(new Color(237, 201, 175));
+	        graphics2.fillRect(0, 0, 1500, 900);
+	    }
 	}
 	
 	public void moveHorizontal(int dx) {

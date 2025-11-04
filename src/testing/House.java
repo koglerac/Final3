@@ -10,7 +10,6 @@ public class House {
 	private ArrayList<Shape> walls;
 	
 	public House(){
-		
 		this.walls = new ArrayList<>();
 		walls.add(new Rectangle2D.Double(600, 325, 300, 25));      
 		walls.add(new Rectangle2D.Double(600, 525, 300, 25));      
