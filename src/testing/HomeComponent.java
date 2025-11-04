@@ -53,7 +53,7 @@ public class HomeComponent extends JComponent {
 		        luke.y = ogY;
 		        luke.updateShape();
 		    }
-		    
+		    milky.collideWithMilk(luke);
 		    enemies.follow(luke, house);
 		    enemies.EnemyIsCollidingWithEnemy();
 		    enemies.LukeisCollidingWithEnemy(luke);
