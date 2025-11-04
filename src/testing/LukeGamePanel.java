@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 public class LukeGamePanel extends JPanel {
 
 	private final HomeComponent canvas = new HomeComponent();
+	private boolean pause = false;
 	
 	public LukeGamePanel() {
     	this.setLayout(new BorderLayout(8, 8));
@@ -32,9 +33,12 @@ public class LukeGamePanel extends JPanel {
                 case KeyEvent.VK_RIGHT -> canvas.setMovingRight(true);
                 case KeyEvent.VK_UP -> canvas.setMovingUp(true);
                 case KeyEvent.VK_DOWN -> canvas.setMovingDown(true);
+                case KeyEvent.VK_ESCAPE -> pause();
                 //case KeyEvent.VK_SPACE -> canvas.lightsaberSwing(true);
 	        	}
 	        }
+	        
+	        
 	        @Override
 	        public void keyReleased(KeyEvent e) {
 	            switch (e.getKeyCode()) {
@@ -53,5 +57,15 @@ public class LukeGamePanel extends JPanel {
 			return false;
 		}
 		return true;
+	}
+	private void pause() {
+		if (pause == true) {
+			canvas.timer.start();
+			pause = false;
+		}
+		else {
+			canvas.timer.stop();
+			pause = true;
+		}
 	}
 }
