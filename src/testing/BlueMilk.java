@@ -5,12 +5,13 @@ import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
 public class BlueMilk {
 	int x, y;
-    int radius = 50;
+    int radius = 10;
     private BufferedImage sprite;
     private boolean spriteLoaded = false;
     public Shape shape;   
@@ -20,7 +21,6 @@ public class BlueMilk {
         this.y = y;
         try {
             sprite = ImageIO.read(BlueMilk.class.getResource("BlueMilk-modified.png"));
-            System.out.println("Sprite loaded: " + spriteLoaded);
             spriteLoaded = (sprite != null);
         } catch (IOException | IllegalArgumentException ex) {
             spriteLoaded = false; // fallback to oval
@@ -47,4 +47,17 @@ public class BlueMilk {
 	public Shape getShape() {
         return shape;
     }
+	
+	public void collideWithMilk(Luke luke) {
+		 double ox = luke.x - x;
+		 double oy = luke.y - y;
+		 double d = Math.sqrt(ox*ox + oy*oy);
+		 double minDist = radius + luke.radius;
+		 if (d < minDist && d != 0) {
+		      	 luke.health ++;
+		      	 this.x=-1000;
+		     	 this.y=-1000;
+		  }
+	}	
+	
 }
