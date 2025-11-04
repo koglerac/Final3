@@ -22,4 +22,7 @@ public class Weapon {
 			g.drawRect(this.x, this.y, width, height);
 		}
 	}
+	public void place() {
+		
+	}
 }
