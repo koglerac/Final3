@@ -17,6 +17,7 @@ public class HomeComponent extends JComponent {
 	private Luke luke = new Luke(WIDTH/2,HEIGHT/2);
 	private Enemies enemies = new Enemies(10);
 	private final House house = new House();
+	private BlueMilk milky = new BlueMilk(100,100);
 	final Color BG = new Color(237,201,175);
 	public static final int WIDTH = 1500;
 	public static final int HEIGHT = 900;
@@ -75,16 +76,6 @@ public class HomeComponent extends JComponent {
 	    timer.start();
 	}
 			
-	private void restartGame() {
-		resetGame();
-        gameOver = false;
-        timer.start();	
-	}
-	
-	private void resetGame() {
-        luke.reset(WIDTH/2, HEIGHT/2, this);
-        enemies = new Enemies(10);
-    }
 
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -94,6 +85,8 @@ public class HomeComponent extends JComponent {
 		luke.draw(g2);
 		enemies.draw(g2);
         house.draw(g2);
+        milky.draw(g2);
+        repaint();
 	}
 	
 	public void background(Graphics2D graphics2) {
@@ -120,6 +113,16 @@ public class HomeComponent extends JComponent {
 	    }
 	    return false;
 	}
+	private void restartGame() {
+		resetGame();
+        gameOver = false;
+        timer.start();	
+	}
+	
+	private void resetGame() {
+        luke.reset(WIDTH/2, HEIGHT/2, this);
+        enemies = new Enemies(10);
+    }
 
 	
 	
