@@ -37,6 +37,7 @@ public class LukeGamePanel extends JPanel {
                 //case KeyEvent.VK_SPACE -> canvas.lightsaberSwing(true);
 	        	}
 	        }
+	        
 	        @Override
 	        public void keyReleased(KeyEvent e) {
 	            switch (e.getKeyCode()) {
