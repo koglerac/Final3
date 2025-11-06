@@ -68,7 +68,13 @@ public class Enemies {
 	}
 	
 
-
+	public boolean checkIfWon() {
+		if (enemies.size() == 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
 	
 
