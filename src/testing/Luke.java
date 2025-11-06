@@ -10,7 +10,7 @@ import javax.imageio.ImageIO;
 public class Luke {
 	int x, y;
     int dx = 0, dy = 0;
-    int health = 3;
+    static int health = 3;
     int radius = 15;
     private BufferedImage sprite;
     private boolean spriteLoaded = false;

@@ -46,7 +46,7 @@ public class Enemies {
 	}
 	public void LukeisCollidingWithEnemy(Luke luke) {
 	    for (Enemy en : enemies) {
-	    	//editted chat code for luke instead of alternate enemey
+	    	//edited chat code for luke instead of alternate enemies
 		            double ox = luke.x - en.x;
 		            double oy = luke.y - en.y;
 		            double d = Math.sqrt(ox*ox + oy*oy);

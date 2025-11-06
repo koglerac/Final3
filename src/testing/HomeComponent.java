@@ -2,6 +2,7 @@ package testing;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -9,11 +10,13 @@ import java.awt.Shape;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -90,7 +93,6 @@ public class HomeComponent extends JComponent {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
 		if (once) {
-			System.out.println("sand");
 			GetSand();
 			once=false;
 		}
@@ -99,13 +101,14 @@ public class HomeComponent extends JComponent {
 		enemies.draw(g2);
         house.draw(g2);
         milky.draw(g2);
+        showScore(g2);
+        showLives(g2);
         repaint();
 	}
 	
 	public void GetSand() {
 	    try {
 	        BGsprite = ImageIO.read(Luke.class.getResource("sand.png"));
-	        System.out.println("Background image loaded successfully!");
 	    } catch (IOException | IllegalArgumentException ex) {
 	        System.err.println("Failed to load sand.png: " + ex.getMessage());
 	        BGsprite = null;
@@ -129,6 +132,19 @@ public class HomeComponent extends JComponent {
 	public void moveVertical(int dy) {
 		luke.y+=dy;
 		repaint();
+	}
+	
+	public void showScore(Graphics2D graphics2) {
+		int score = 2;
+		graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
+	    graphics2.setColor(Color.WHITE);
+	    graphics2.drawString("Score: <<SCORE NOT ACCURATE>>" + score, 10, 30); // x=10, y=30
+	}
+	public void showLives(Graphics2D graphics2) {
+		int lives = Luke.health;
+		graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
+	    graphics2.setColor(Color.WHITE);
+	    graphics2.drawString("Lives: " + lives, 10, 65); // x=10, y=30
 	}
 	
 	private boolean LukeisCollidingWithWall() {
