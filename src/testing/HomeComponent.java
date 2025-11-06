@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -34,6 +35,7 @@ public class HomeComponent extends JComponent {
 	public boolean gameOver = false;
 	private boolean once= true;
 	private BufferedImage BGsprite;
+	private boolean sandstorm = false;
 	Timer timer;
 
 	public HomeComponent() {
@@ -103,7 +105,24 @@ public class HomeComponent extends JComponent {
         milks.draw(g2);
         showScore(g2);
         showLives(g2);
+        Sandstorm(g2);
         repaint();
+	}
+	
+	
+	public void Sandstorm(Graphics2D graphics2) {
+		Random rand = new Random();
+		
+		if (level.level>=2) {
+			int randomNum = rand.nextInt(1);
+	    		if (randomNum == 1) { //SANDSTORM!!
+	    			luke.x=luke.x-2;
+	    			
+	    			graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
+	    		    graphics2.setColor(Color.BLUE);
+	    		    graphics2.drawString("SANDSTORM!!", 10, 100); // x=10, y=30
+	    		}
+		}		
 	}
 	
 	public void GetSand() {
@@ -146,7 +165,7 @@ public class HomeComponent extends JComponent {
 		int lives = Luke.health;
 		graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
 	    graphics2.setColor(Color.BLUE);
-	    graphics2.drawString("Lives: " + lives, 10, 65); // x=10, y=30
+	    graphics2.drawString("Lives: " + lives, 10, 65);
 	}
 	
 	private boolean LukeisCollidingWithWall() {

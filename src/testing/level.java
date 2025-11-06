@@ -1,7 +1,7 @@
 package testing;
 
 public class level {
-	public int level;
+	public static int level;
 	
 	public level(int n) {
 		this.level = n;
