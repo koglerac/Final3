@@ -26,7 +26,7 @@ public class HomeComponent extends JComponent {
 	private Luke luke = new Luke(WIDTH/2,HEIGHT/2);
 	private Enemies enemies = new Enemies(10);
 	private final House house = new House();
-	private BlueMilk milky = new BlueMilk();
+	private Milks milks = new Milks(2);
 	final Color BG = new Color(237,201,175);
 	public static final int WIDTH = 1500;
 	public static final int HEIGHT = 900;
@@ -56,7 +56,7 @@ public class HomeComponent extends JComponent {
 		        luke.y = ogY;
 		        luke.updateShape();
 		    }
-		    milky.collideWithMilk(luke);
+		    milks.collideWithMilk(luke);
 		    enemies.follow(luke, house);
 		    enemies.EnemyIsCollidingWithEnemy();
 		    enemies.LukeisCollidingWithEnemy(luke);
@@ -100,7 +100,7 @@ public class HomeComponent extends JComponent {
 		luke.draw(g2);
 		enemies.draw(g2);
         house.draw(g2);
-        milky.draw(g2);
+        milks.draw(g2);
         showScore(g2);
         showLives(g2);
         repaint();
@@ -137,7 +137,7 @@ public class HomeComponent extends JComponent {
 	public void showScore(Graphics2D graphics2) {
 		int score = 2;
 		graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
-	    graphics2.setColor(Color.WHITE);
+	    graphics2.setColor(Color.BLUE);
 	    graphics2.drawString("Score: <<SCORE NOT ACCURATE>>" + score, 10, 30); // x=10, y=30
 	    int level = 1;
 	    graphics2.drawString("Level: " + level, 1370, 30);
@@ -145,7 +145,7 @@ public class HomeComponent extends JComponent {
 	public void showLives(Graphics2D graphics2) {
 		int lives = Luke.health;
 		graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
-	    graphics2.setColor(Color.WHITE);
+	    graphics2.setColor(Color.BLUE);
 	    graphics2.drawString("Lives: " + lives, 10, 65); // x=10, y=30
 	}
 	
@@ -167,6 +167,7 @@ public class HomeComponent extends JComponent {
 	private void resetGame() {
         luke.reset(WIDTH/2, HEIGHT/2, this);
         enemies = new Enemies(10);
+        milks = new Milks(2);
     }
 
 	

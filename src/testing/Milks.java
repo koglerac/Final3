@@ -26,4 +26,11 @@ private ArrayList<BlueMilk> milks;
 	public ArrayList<BlueMilk> getMilks() {
 		return milks;
 	}
+
+
+	public void collideWithMilk(Luke luke) {
+		for (BlueMilk m : milks) {
+			m.collideWithMilk(luke);
+		}
+	}
 }
