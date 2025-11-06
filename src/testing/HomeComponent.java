@@ -26,7 +26,7 @@ public class HomeComponent extends JComponent {
 	private Luke luke = new Luke(WIDTH/2,HEIGHT/2);
 	private Enemies enemies = new Enemies(10);
 	private final House house = new House();
-	private BlueMilk milky = new BlueMilk(100,100);
+	private BlueMilk milky = new BlueMilk();
 	final Color BG = new Color(237,201,175);
 	public static final int WIDTH = 1500;
 	public static final int HEIGHT = 900;

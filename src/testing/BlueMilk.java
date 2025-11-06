@@ -6,6 +6,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
@@ -14,11 +15,13 @@ public class BlueMilk {
     int radius = 10;
     private BufferedImage sprite;
     private boolean spriteLoaded = false;
-    public Shape shape;   
+    public Shape shape;  
+    Random rand = new Random();
 	
-    public BlueMilk(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public BlueMilk() {
+    	this.x = rand.nextInt(1500);
+    	this.y = rand.nextInt(100);
+    	if (y>50) { this.y = 900 -y;}
         try {
             sprite = ImageIO.read(BlueMilk.class.getResource("BlueMilk-modified.png"));
             spriteLoaded = (sprite != null);
