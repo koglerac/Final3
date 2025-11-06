@@ -139,6 +139,8 @@ public class HomeComponent extends JComponent {
 		graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
 	    graphics2.setColor(Color.WHITE);
 	    graphics2.drawString("Score: <<SCORE NOT ACCURATE>>" + score, 10, 30); // x=10, y=30
+	    int level = 1;
+	    graphics2.drawString("Level: " + level, 1370, 30);
 	}
 	public void showLives(Graphics2D graphics2) {
 		int lives = Luke.health;
