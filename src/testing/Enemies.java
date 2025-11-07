@@ -20,6 +20,7 @@ public class Enemies {
 		// TODO Auto-generated method stub
 		for (Enemy En : enemies) {
 			En.draw(g2);
+			En.itimer();
 		}
 	}
 

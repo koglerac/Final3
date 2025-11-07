@@ -104,9 +104,10 @@ public class Enemy {
 	    }
 	    
 	    if (EnemyGettingSabered(lightsaber)) {
-	    	if (invincible == false) {
+	    	if (!invincible) {
 	    		health = health - 1;
 	    		invincible = true;
+	    		itimer = 50;
 	    	}
 	    	if (health <= 0) {
 	    		alive = false;
@@ -157,6 +158,13 @@ public class Enemy {
 		}
 	}
 	}
-
+	public void itimer() {
+		if (invincible) {
+			itimer--;
+		}
+		if (itimer == 0) {
+			invincible = false;
+		}
+	}
 	}
 
