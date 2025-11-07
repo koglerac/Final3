@@ -23,6 +23,9 @@ public class Enemy {
     Shape shape;
     private boolean movingLeft, movingRight, movingUp, movingDown;
     boolean alive = true;
+    boolean invincible = false;
+    public int itimer = 0;
+    
     
     public Enemy() {
     	this.x = rand.nextInt(1500);
@@ -101,8 +104,11 @@ public class Enemy {
 	    }
 	    
 	    if (EnemyGettingSabered(lightsaber)) {
-	    	health = health - 1;
-	    	if (health >= 0) {
+	    	if (invincible == false) {
+	    		health = health - 1;
+	    		invincible = true;
+	    	}
+	    	if (health <= 0) {
 	    		alive = false;
 	    	}
 	    }
