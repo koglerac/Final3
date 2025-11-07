@@ -101,7 +101,10 @@ public class Enemy {
 	    }
 	    
 	    if (EnemyGettingSabered(lightsaber)) {
-	    	System.out.println("hit");
+	    	health = health - 1;
+	    	if (health >= 0) {
+	    		alive = false;
+	    	}
 	    }
 	    
 	    
@@ -147,6 +150,10 @@ public class Enemy {
 
 		}
 	}
+	}
+	
+	public void hit() {
+		
 	}
 	
 
