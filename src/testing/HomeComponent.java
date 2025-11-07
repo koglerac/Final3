@@ -47,7 +47,6 @@ public class HomeComponent extends JComponent {
 	        luke.x = Math.max(luke.radius, Math.min(WIDTH - luke.radius, luke.x));
 		    luke.y = Math.max(luke.radius, Math.min(HEIGHT - luke.radius, luke.y));
 		    luke.updateShape();
-		    lightsaber.updatePos(luke);
 		    
 		    if (LukeisCollidingWithWall()) {
 		        // revert to previous position
@@ -55,6 +54,7 @@ public class HomeComponent extends JComponent {
 		        luke.y = ogY;
 		        luke.updateShape();
 		    }
+		    lightsaber.updatePos(luke);
 		    milks.collideWithMilk(luke);
 		    enemies.follow(luke, house, lightsaber);
 		    enemies.EnemyIsCollidingWithEnemy();
@@ -190,7 +190,10 @@ public class HomeComponent extends JComponent {
 	
 	private void resetGame() {
         luke.reset(WIDTH/2, HEIGHT/2, this);
-        enemies = new Enemies(10);
+//        enemies.removeAll();
+        enemies = new Enemies(1);
+        level.reset();
+        System.out.println(level.getLevel());
     }
 
 	

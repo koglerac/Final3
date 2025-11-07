@@ -15,4 +15,8 @@ public class level {
 	public int getLevel() {
 		return level;
 	}
+	
+	public void reset() {
+		this.level = 1;
+	}
 }
