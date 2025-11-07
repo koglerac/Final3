@@ -9,6 +9,7 @@ public class level {
 	
 	public void nextlevel() {
 		level++;
+		
 	}
 	
 	public int getLevel() {

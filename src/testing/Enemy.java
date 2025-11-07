@@ -151,11 +151,6 @@ public class Enemy {
 		}
 	}
 	}
-	
-	public void hit() {
-		
-	}
-	
 
 	}
 

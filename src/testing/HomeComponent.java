@@ -5,19 +5,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Shape;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
@@ -26,9 +20,9 @@ import javax.swing.Timer;
 public class HomeComponent extends JComponent {
 	private Luke luke = new Luke(WIDTH/2,HEIGHT/2);
 	private Weapon lightsaber = new Weapon(luke);
-	private Enemies enemies = new Enemies(10);
+	private Enemies enemies = new Enemies(1);
 	private final House house = new House();
-	private Milks milks = new Milks(2);
+	private Milks milks = new Milks(0);
 	final Color BG = new Color(237,201,175);
 	public static final int WIDTH = 1500;
 	public static final int HEIGHT = 900;
@@ -37,6 +31,7 @@ public class HomeComponent extends JComponent {
 	private boolean once= true;
 	private BufferedImage BGsprite;
 	private boolean sandstorm = false;
+	private level level = new level(1);
 	Timer timer;
 
 	public HomeComponent() {
@@ -85,7 +80,13 @@ public class HomeComponent extends JComponent {
 		        });
 		    	timer.stop();
 		    }
-		    
+		    if (enemies.checkIfWon()) {
+		    	level.nextlevel() ;
+		    	enemies = new Enemies((level.getLevel()-1)*3+1);
+		    	if (level.getLevel()%2==0)  milks = new Milks(1);
+		    	if (level.getLevel() == 10) {
+		    		enemies = new Enemies(100);}
+		    }
 	        repaint();
 	        });
 	    timer.start();
@@ -163,8 +164,7 @@ public class HomeComponent extends JComponent {
 		graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
 	    graphics2.setColor(Color.BLUE);
 	    graphics2.drawString("Score: <<SCORE NOT ACCURATE>>" + score, 10, 30); // x=10, y=30
-	    int level = 1;
-	    graphics2.drawString("Level: " + level, 1370, 30);
+	    graphics2.drawString("Level: " + level.getLevel(), 1370, 30);
 	}
 	public void showLives(Graphics2D graphics2) {
 		int lives = Luke.health;
@@ -191,7 +191,6 @@ public class HomeComponent extends JComponent {
 	private void resetGame() {
         luke.reset(WIDTH/2, HEIGHT/2, this);
         enemies = new Enemies(10);
-        milks = new Milks(2);
     }
 
 	
