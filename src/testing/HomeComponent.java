@@ -190,7 +190,7 @@ public class HomeComponent extends JComponent {
 	
 	private void resetGame() {
         luke.reset(WIDTH/2, HEIGHT/2, this);
-//        enemies.removeAll();
+        enemies.removeAll();
         enemies = new Enemies(1);
         level.reset();
         System.out.println(level.getLevel());

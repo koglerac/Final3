@@ -132,6 +132,10 @@ public class Enemy {
 		}
 		return false;
 	}
+	
+	public void Kill() {
+		alive = false;
+	}
 		
 	public void setMovingLeft(boolean b)  { movingLeft = b; }
 	public void setMovingRight(boolean b) { movingRight = b; }

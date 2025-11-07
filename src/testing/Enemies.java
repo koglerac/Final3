@@ -81,11 +81,11 @@ public class Enemies {
 		enemies.removeIf(e -> !e.alive);
 	}
 	
-//	public void removeAll() {
-//		for (Enemy e : enemies) {
-//			enemies.remove(e);
-//		}
-//	}
+	public void removeAll() {
+		for (Enemy e : enemies) {
+			e.Kill();
+		}
+	}
 	
 
 }
