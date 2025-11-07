@@ -80,7 +80,7 @@ public class Enemy {
         return shape;
     }
 	
-	public void collision(House house, Luke luke) {
+	public void collision(House house, Luke luke, Weapon lightsaber) {
 		int ogX = x;
 		int ogY = y;
 		this.chase(luke);
@@ -100,9 +100,9 @@ public class Enemy {
 	        updateShape();
 	    }
 	    
-//	    if (EnemyGettingSabered(lightsaber)) {
-//	    	System.out.println("ded");
-//	    }
+	    if (EnemyGettingSabered(lightsaber)) {
+	    	System.out.println("hit");
+	    }
 	    
 	    
 	}

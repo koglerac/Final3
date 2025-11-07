@@ -24,9 +24,9 @@ public class Enemies {
 	}
 
 
-	public void follow(Luke luke, House house) {
+	public void follow(Luke luke, House house, Weapon lightsaber) {
 		for (Enemy En : enemies) {
-			En.collision(house, luke);
+			En.collision(house, luke, lightsaber);
 			}
 		//chat line
 		enemies.removeIf(e -> !e.alive);

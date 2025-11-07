@@ -29,8 +29,13 @@ public class Weapon {
         } catch (IOException | IllegalArgumentException ex) {
             spriteLoaded = false;
         }
+		updateShape();
 	}
-	
+	public void updatePos(Luke luke) {
+		this.x = luke.x - width / 2;
+		this.y = luke.y - 50;
+		updateShape();
+	}
 	public void draw(Graphics g) {
 		if (spriteLoaded) { 
 			g.drawImage(sprite, x, y, width, height, null);
@@ -38,11 +43,15 @@ public class Weapon {
 	}
 	
 	public void updateShape() {
-		shape = new Rectangle2D.Double(this.x, this.y, width, height);
+		shape = new Rectangle2D.Double(x, y, width, height);
 	}
 	
 	public Shape getShape() {
 		return shape;
+	}
+	
+	public int getDamage() {
+		return damage;
 	}
 	
 }
