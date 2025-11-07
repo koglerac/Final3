@@ -25,6 +25,7 @@ import javax.swing.Timer;
 
 public class HomeComponent extends JComponent {
 	private Luke luke = new Luke(WIDTH/2,HEIGHT/2);
+	private Weapon lightsaber = new Weapon(luke);
 	private Enemies enemies = new Enemies(10);
 	private final House house = new House();
 	private Milks milks = new Milks(2);
@@ -44,13 +45,15 @@ public class HomeComponent extends JComponent {
 	    	int ogX = luke.x;
 	        int ogY = luke.y;
 
-	    	if (movingLeft)  luke.x -= 4;
-	        if (movingRight) luke.x += 4;
-	        if (movingUp)    luke.y -= 4;
-	        if (movingDown)  luke.y += 4;
+	    	if (movingLeft)  luke.x -= 4; 
+	        if (movingRight) luke.x += 4; 
+	        if (movingUp)    luke.y -= 4; 
+	        if (movingDown)  luke.y += 4; 
 	        luke.x = Math.max(luke.radius, Math.min(WIDTH - luke.radius, luke.x));
 		    luke.y = Math.max(luke.radius, Math.min(HEIGHT - luke.radius, luke.y));
 		    luke.updateShape();
+		    lightsaber.x = luke.x;
+		    lightsaber.y = luke.y;
 		    
 		    if (LukeisCollidingWithWall()) {
 		        // revert to previous position
@@ -103,6 +106,7 @@ public class HomeComponent extends JComponent {
 		enemies.draw(g2);
         house.draw(g2);
         milks.draw(g2);
+        lightsaber.draw(g2);
         showScore(g2);
         showLives(g2);
         Sandstorm(g2);
@@ -145,11 +149,13 @@ public class HomeComponent extends JComponent {
 	
 	public void moveHorizontal(int dx) {
         luke.x += dx;
+        lightsaber.x += dx;
         repaint(); 
 	}
 	
 	public void moveVertical(int dy) {
 		luke.y+=dy;
+		lightsaber.y += dy;
 		repaint();
 	}
 	
