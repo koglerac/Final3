@@ -100,6 +100,10 @@ public class Enemy {
 	        updateShape();
 	    }
 	    
+//	    if (EnemyGettingSabered(lightsaber)) {
+//	    	System.out.println("ded");
+//	    }
+	    
 	    
 	}
 	private boolean EnemyisCollidingWithWall(House house) {
@@ -110,6 +114,13 @@ public class Enemy {
 	        }
 	    }
 	    return false;
+	}
+	
+	private boolean EnemyGettingSabered(Weapon lightsaber) {
+		if (this.shape.intersects(lightsaber.getShape().getBounds2D())) {
+			return true;
+		}
+		return false;
 	}
 		
 	public void setMovingLeft(boolean b)  { movingLeft = b; }

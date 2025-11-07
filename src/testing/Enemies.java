@@ -58,6 +58,13 @@ public class Enemies {
 	        	
 	        }
 	    }
+	
+	public void LightsaberHittingEnemy(Weapon lightsaber) {
+		for (Enemy en : enemies) {
+			
+		}
+		
+	}
 
 
 	public void setSpeed(int speed) {

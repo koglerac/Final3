@@ -1,6 +1,9 @@
 package testing;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -15,6 +18,7 @@ public class Weapon {
 	int width = 10;
 	int height = 25;
 	int swingspeed = 2;
+	public Shape shape;
 	
 	public Weapon(Luke luke) {
 		this.x = luke.x;
@@ -31,6 +35,14 @@ public class Weapon {
 		if (spriteLoaded) { 
 			g.drawImage(sprite, x, y, width, height, null);
 		}
+	}
+	
+	public void updateShape() {
+		shape = new Rectangle2D.Double(this.x, this.y, width, height);
+	}
+	
+	public Shape getShape() {
+		return shape;
 	}
 	
 }
