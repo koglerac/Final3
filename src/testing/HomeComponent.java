@@ -82,10 +82,30 @@ public class HomeComponent extends JComponent {
 		    }
 		    if (enemies.checkIfWon()) {
 		    	level.nextlevel() ;
-		    	enemies = new Enemies((level.getLevel()-1)*3+1);
 		    	if (level.getLevel()%2==0)  milks = new Milks(1);
 		    	if (level.getLevel() == 10) {
 		    		enemies = new Enemies(100);}
+		    	else if (level.getLevel()==11) {
+		    		SwingUtilities.invokeLater(() -> {
+			            int choice = JOptionPane.showConfirmDialog(
+			                    this,
+			                    "You Won! Congratulations on escaping Tatooine\n Would you like to play again?",
+			                    "You Won",
+			                    JOptionPane.YES_NO_OPTION
+			            );
+		    			
+		    		if (choice == JOptionPane.YES_OPTION) {
+		                restartGame();
+		            } else {
+		                System.exit(0);
+		            }
+		    		
+		    		});
+		    		timer.stop();
+		    		}
+		    	else {
+		    		enemies = new Enemies((level.getLevel()-1)*3+1);
+		    	}
 		    }
 	        repaint();
 	        });
