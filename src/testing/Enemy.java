@@ -89,6 +89,8 @@ public class Enemy {
 		this.chase(luke);
 		if (movingLeft)  x -= dx;
         if (movingRight) x += dx;
+        updateShape();
+        
         if (movingUp)    y -= dy;
         if (movingDown)  y += dy;
         x = Math.max(radius, Math.min(1500 - radius, x));
@@ -96,11 +98,49 @@ public class Enemy {
 	    updateShape();
 	    
 	    if (EnemyisCollidingWithWall(house)) {
-	        // revert to previous position
+	    	double left   = x - radius;
+	    	double right  = x + radius;
+	    	double top    = y - radius;
+	    	double bottom = y + radius;
+
+	    	int margin = 5; // extra tolerance
+	    	// top-left inside corner
+	    	if (right >= 625 - margin && left <= 625 + margin &&
+	    	    bottom >= 350 - margin && top <= 350 + margin) {
+	    	    x = ogX;
+	    	    y = ogY + 2;
+	    	    System.out.println("top left");
+	    	}
+
+	    	// bottom-left
+	    	else if (right >= 625 - margin && left <= 625 + margin &&
+	    	         bottom >= 525 - margin && top <= 525 + margin) {
+	    	    x = ogX;
+	    	    y = ogY - 2;
+	    	    System.out.println("bottom left");
+	    	}
+
+	    	// top-right
+	    	else if (right >= 875 - margin && left <= 875 + margin &&
+	    	         bottom >= 350 - margin && top <= 350 + margin) {
+	    	    x = ogX;
+	    	    y = ogY + 2;
+	    	    System.out.println("top right");
+	    	}
+
+	    	// bottom-right
+	    	else if (right >= 875 - margin && left <= 875 + margin &&
+	    	         bottom >= 525 - margin && top <= 525 + margin) {
+	    	    x = ogX;
+	    	    y = ogY - 2;
+	    	    System.out.println("bottom right");
+	    	}
+	    	else {
 	        if (x>750) x=ogX+1;
 	    	if (x<=750) x = ogX-1;
 	        y = ogY;
-	        updateShape();
+	        }
+	    	updateShape();
 	    }
 	    
 	    if (EnemyGettingSabered(lightsaber)) {
