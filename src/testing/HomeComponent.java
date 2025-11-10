@@ -143,22 +143,25 @@ public class HomeComponent extends JComponent {
 	
 	public void Sandstorm(Graphics2D graphics2) {
 		Random rand = new Random();
+		int randX = rand.nextInt(4);
+		int randY = rand.nextInt(4);
 		
 		if (level.level%2==0) {
-	
 			int randomNum = rand.nextInt(2);
 	    		if (randomNum == 1) { //SANDSTORM!!
-	    			luke.x=luke.x-3;
+	    			luke.x=luke.x-randX;
+	    			luke.y=luke.y-randY;
 	    			for(Enemy e:Enemies.enemies) {
-	    				e.x -= 3;
+	    				e.x -= -randX;
+	    				e.y -= -randY;
 	    			}
 	    				
-	    			}
+	    		}
 	    			graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
 	    		    graphics2.setColor(Color.BLUE);
 	    		    graphics2.drawString("SANDSTORM!!", 10, 100); // x=10, y=30
-	    		}
-		}		
+	    }
+	}		
 	
 	
 	public void GetSand() {
