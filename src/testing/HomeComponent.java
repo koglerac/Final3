@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
@@ -117,6 +118,7 @@ public class HomeComponent extends JComponent {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2 = (Graphics2D) g;
+		AffineTransform old = g2.getTransform();
 		if (once) {
 			GetSand();
 			once=false;
@@ -125,12 +127,15 @@ public class HomeComponent extends JComponent {
 		luke.draw(g2);
 		enemies.draw(g2);
         house.draw(g2);
+        g2.rotate(lightsaber.saberangle, luke.x, luke.y);
+		lightsaber.draw(g2);
+		g2.setTransform(old);
         milks.draw(g2);
-        lightsaber.draw(g2);
         showScore(g2);
         showLives(g2);
         Sandstorm(g2);
-        repaint();
+        g2.setColor(Color.RED);
+        g2.draw(lightsaber.shape);
 	}
 	
 	

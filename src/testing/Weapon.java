@@ -2,6 +2,7 @@ package testing;
 
 import java.awt.Graphics;
 import java.awt.Shape;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -18,6 +19,7 @@ public class Weapon {
 	int height = 30;
 	int swingspeed = 2;
 	public Shape shape;
+	double saberangle = 0;
 	
 	public Weapon(Luke luke) {
 		this.x = luke.x - width / 2;
@@ -28,26 +30,17 @@ public class Weapon {
         } catch (IOException | IllegalArgumentException ex) {
             spriteLoaded = false;
         }
-		updateShape();
+		updateShape(luke);
 	}
 	public void updatePos(Luke luke, boolean left, boolean right, boolean up, boolean down) {
-		if (left) {
-			this.x = luke.x - luke.radius - width;
-			this.y = luke.y - height / 2;
-		}
-		if (right) {
-			this.x = luke.x + luke.radius;
-			this.y = luke.y - height / 2;
-		}
-		if (up) {
-			this.x = luke.x - width / 2;
-			this.y = luke.y - 2 * luke.radius - height / 2;
-		}
-		if (down) {
-			this.x = luke.x - width / 2;
-			this.y = luke.y + 2 * luke.radius - height / 2;
-		}
-		updateShape();
+		this.x = luke.x - width / 2;
+		this.y = luke.y - 2 * luke.radius - height / 2;
+		if (left) saberangle = -Math.PI / 2;
+		if (right) saberangle = Math.PI / 2;
+		if (up) saberangle = 0;	
+		if (down) saberangle = Math.PI;
+			
+		updateShape(luke);
 	}
 	public void draw(Graphics g) {
 		if (spriteLoaded) { 
@@ -55,8 +48,10 @@ public class Weapon {
 		}
 	}
 	
-	public void updateShape() {
-		shape = new Rectangle2D.Double(x, y, width, height);
+	private void updateShape(Luke luke) {
+		shape = new Rectangle2D.Double(luke.x - width / 2, luke.y - luke.radius*2 - height / 2, width, height);
+		AffineTransform rotate = AffineTransform.getRotateInstance(saberangle, luke.x, luke.y);
+		shape = rotate.createTransformedShape(shape);
 	}
 	
 	public Shape getShape() {
