@@ -134,8 +134,9 @@ public class HomeComponent extends JComponent {
         showScore(g2);
         showLives(g2);
         Sandstorm(g2);
-        g2.setColor(Color.RED);
-        g2.draw(lightsaber.shape);
+        //Draw lightsaber hitbox for testing
+//        g2.setColor(Color.RED);
+//        g2.draw(lightsaber.shape);
 	}
 	
 	
