@@ -14,8 +14,8 @@ public class Weapon {
 	private BufferedImage sprite;
 	int x;
 	int y;
-	int width = 10;
-	int height = 25;
+	int width = 15;
+	int height = 30;
 	int swingspeed = 2;
 	public Shape shape;
 	
@@ -30,9 +30,25 @@ public class Weapon {
         }
 		updateShape();
 	}
-	public void updatePos(Luke luke) {
-		this.x = luke.x - width / 2;
-		this.y = luke.y - 2 * luke.radius - height / 2;
+	public void updatePos(Luke luke, boolean left, boolean right, boolean up, boolean down) {
+		if (left) {
+			this.x = luke.x - luke.radius - width;
+			this.y = luke.y - height / 2;
+		}
+		if (right) {
+			this.x = luke.x + luke.radius;
+			this.y = luke.y - height / 2;
+		}
+		if (up) {
+			this.x = luke.x - width / 2;
+			this.y = luke.y - 2 * luke.radius - height / 2;
+		}
+		if (down) {
+			this.x = luke.x - width / 2;
+			this.y = luke.y + 2 * luke.radius - height / 2;
+		}
+		else
+			System.out.println("Not up");
 		updateShape();
 	}
 	public void draw(Graphics g) {

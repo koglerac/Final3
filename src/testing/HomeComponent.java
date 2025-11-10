@@ -54,7 +54,7 @@ public class HomeComponent extends JComponent {
 		        luke.y = ogY;
 		        luke.updateShape();
 		    }
-		    lightsaber.updatePos(luke);
+		    lightsaber.updatePos(luke, movingLeft, movingRight, movingUp, movingDown);
 		    milks.collideWithMilk(luke);
 		    enemies.follow(luke, house, lightsaber);
 		    enemies.EnemyIsCollidingWithEnemy();
@@ -169,13 +169,13 @@ public class HomeComponent extends JComponent {
 	
 	public void moveHorizontal(int dx) {
         luke.x += dx;
-        lightsaber.x += dx;
+//        lightsaber.x += dx;
         repaint(); 
 	}
 	
 	public void moveVertical(int dy) {
 		luke.y+=dy;
-		lightsaber.y += dy;
+//		lightsaber.y += dy;
 		repaint();
 	}
 	

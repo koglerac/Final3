@@ -149,7 +149,7 @@ public class Enemy {
 	    		dy = -dy;
 	    		health = health - 1;
 	    		invincible = true;
-	    		itimer = 50;
+	    		itimer = 100;
 	    	}
 	    	if (health <= 0) {
 	    		alive = false;
