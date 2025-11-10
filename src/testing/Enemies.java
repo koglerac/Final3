@@ -6,9 +6,12 @@ import java.util.ArrayList;
 public class Enemies {
 
 	private ArrayList<Enemy> enemies;
+	private HomeComponent home; // reference to main component
+
 	
 	public Enemies(int num) {
 		enemies = new ArrayList<>();
+		//this.home = home;
 		for (int i = 0; i < num; i++) {
 			Enemy enemy = new Enemy();
 			enemies.add(enemy);
@@ -25,9 +28,9 @@ public class Enemies {
 	}
 
 
-	public void follow(Luke luke, House house, Weapon lightsaber) {
+	public void follow(Luke luke, House house, Weapon lightsaber, HomeComponent home) {
 		for (Enemy En : enemies) {
-			En.collision(house, luke, lightsaber);
+			En.collision(house, luke, lightsaber, home);
 			}
 		//chat line
 		enemies.removeIf(e -> !e.alive);
@@ -45,7 +48,7 @@ public class Enemies {
 	    }
 	    
 	}
-	public void LukeisCollidingWithEnemy(Luke luke) {
+	public void LukeisCollidingWithEnemy(Luke luke, HomeComponent home) {
 	    for (Enemy en : enemies) {
 	    	//edited chat code for luke instead of alternate enemies
 		            double ox = luke.x - en.x;
@@ -55,6 +58,7 @@ public class Enemies {
 		            if (d < minDist && d != 0) {
 		            	luke.health --;
 		            	en.alive = false;
+		            	home.score++;
 		            }
 	        	
 	        }
@@ -77,13 +81,15 @@ public class Enemies {
 		}
 	}
 
-	public void removeDeadEnemies() {
-		enemies.removeIf(e -> !e.alive);
-	}
+//	public int removeDeadEnemies(int score) {
+//		enemies.removeIf(e -> !e.alive);
+//		return score++;
+//	}
 	
 	public void removeAll() {
 		for (Enemy e : enemies) {
 			e.Kill();
+			
 		}
 	}
 	

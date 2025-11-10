@@ -33,6 +33,7 @@ public class HomeComponent extends JComponent {
 	private BufferedImage BGsprite;
 	private boolean sandstorm = false;
 	private level level = new level(1);
+	public int score = 0;
 	Timer timer;
 
 	public HomeComponent() {
@@ -57,9 +58,9 @@ public class HomeComponent extends JComponent {
 		    }
 		    lightsaber.updatePos(luke, movingLeft, movingRight, movingUp, movingDown);
 		    milks.collideWithMilk(luke);
-		    enemies.follow(luke, house, lightsaber);
+		    enemies.follow(luke, house, lightsaber, this);
 		    enemies.EnemyIsCollidingWithEnemy();
-		    enemies.LukeisCollidingWithEnemy(luke);
+		    enemies.LukeisCollidingWithEnemy(luke, this);
 		    if (luke.health == 0) {
 		    	gameOver = true;
 		    	//ChatGPT code until space
@@ -186,10 +187,9 @@ public class HomeComponent extends JComponent {
 	}
 	
 	public void showScore(Graphics2D graphics2) {
-		int score = 2;
 		graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
 	    graphics2.setColor(Color.BLUE);
-	    graphics2.drawString("Score: <<SCORE NOT ACCURATE>>" + score, 10, 30); // x=10, y=30
+	    graphics2.drawString("Score: " + score, 10, 30); // x=10, y=30
 	    graphics2.drawString("Level: " + level.getLevel(), 1370, 30);
 	}
 	public void showLives(Graphics2D graphics2) {
@@ -220,6 +220,9 @@ public class HomeComponent extends JComponent {
         enemies = new Enemies(1);
         level.reset();
         System.out.println(level.getLevel());
+    }
+	public int getScore() {
+        return score;
     }
 
 	

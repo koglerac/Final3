@@ -25,10 +25,13 @@ public class Enemy {
     boolean alive = true;
     boolean invincible = false;
     public int itimer = 0;
+    private HomeComponent home; // reference to main component
+
     
     
     public Enemy() {
     	this.x = rand.nextInt(1500);
+    	this.home = home;
     	this.y = rand.nextInt(100);
     	if (y>50) { this.y = 900 -y;}
     	int randomNum = rand.nextInt(6);
@@ -83,7 +86,7 @@ public class Enemy {
         return shape;
     }
 	
-	public void collision(House house, Luke luke, Weapon lightsaber) {
+	public void collision(House house, Luke luke, Weapon lightsaber, HomeComponent home) {
 		int ogX = x;
 		int ogY = y;
 		this.chase(luke);
@@ -153,6 +156,7 @@ public class Enemy {
 	    	}
 	    	if (health <= 0) {
 	    		alive = false;
+	    		home.score++;
 	    	}
 	    }
 	    
