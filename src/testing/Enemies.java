@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Enemies {
 
-	private ArrayList<Enemy> enemies;
+	public static ArrayList<Enemy> enemies;
 	private HomeComponent home; // reference to main component
 
 	
