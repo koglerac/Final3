@@ -20,8 +20,8 @@ public class Weapon {
 	public Shape shape;
 	
 	public Weapon(Luke luke) {
-		this.x = luke.x;
-		this.y = luke.y;
+		this.x = luke.x - width / 2;
+		this.y = luke.y - 2 * luke.radius - height / 2;
 		try {
             sprite = ImageIO.read(Luke.class.getResource("Blue_Lightsaber.png"));
             spriteLoaded = (sprite != null);
@@ -47,8 +47,6 @@ public class Weapon {
 			this.x = luke.x - width / 2;
 			this.y = luke.y + 2 * luke.radius - height / 2;
 		}
-		else
-			System.out.println("Not up");
 		updateShape();
 	}
 	public void draw(Graphics g) {
