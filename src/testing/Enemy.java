@@ -145,6 +145,8 @@ public class Enemy {
 	    
 	    if (EnemyGettingSabered(lightsaber)) {
 	    	if (!invincible) {
+	    		dx = -dx;
+	    		dy = -dy;
 	    		health = health - 1;
 	    		invincible = true;
 	    		itimer = 50;
@@ -206,7 +208,9 @@ public class Enemy {
 		if (invincible) {
 			itimer--;
 		}
-		if (itimer == 0) {
+		if (itimer == 0 && invincible) {
+			dx = -dx;
+			dy = -dy;
 			invincible = false;
 		}
 	}

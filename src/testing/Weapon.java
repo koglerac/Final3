@@ -1,7 +1,6 @@
 package testing;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -33,7 +32,7 @@ public class Weapon {
 	}
 	public void updatePos(Luke luke) {
 		this.x = luke.x - width / 2;
-		this.y = luke.y - 50;
+		this.y = luke.y - 2 * luke.radius - height / 2;
 		updateShape();
 	}
 	public void draw(Graphics g) {
