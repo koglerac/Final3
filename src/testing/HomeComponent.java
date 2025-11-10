@@ -144,13 +144,13 @@ public class HomeComponent extends JComponent {
 	public void Sandstorm(Graphics2D graphics2) {
 		Random rand = new Random();
 		
-		if (level.level%2==1) {
+		if (level.level%2==0) {
 	
 			int randomNum = rand.nextInt(2);
 	    		if (randomNum == 1) { //SANDSTORM!!
-	    			luke.x=luke.x-5;
+	    			luke.x=luke.x-3;
 	    			for(Enemy e:Enemies.enemies) {
-	    				e.x -= 5;
+	    				e.x -= 3;
 	    			}
 	    				
 	    			}
