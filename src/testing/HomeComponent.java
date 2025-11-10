@@ -148,7 +148,7 @@ public class HomeComponent extends JComponent {
 		
 		if (level.level%2==0) {
 			int randomNum = rand.nextInt(2);
-	    		if (randomNum == 1) { //SANDSTORM!!
+	    		if (randomNum == 1) {
 	    			luke.x=luke.x-randX;
 	    			luke.y=luke.y-randY;
 	    			for(Enemy e:Enemies.enemies) {
