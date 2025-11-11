@@ -228,6 +228,7 @@ public class HomeComponent extends JComponent {
         enemies = new Enemies(1);
         level.reset();
         System.out.println(level.getLevel());
+        score = 0;
     }
 	public int getScore() {
         return score;
