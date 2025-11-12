@@ -34,6 +34,7 @@ public class HomeComponent extends JComponent {
 	private boolean sandstorm = false;
 	private level level = new level(1);
 	public int score = 0;
+	public int high_score = 0;
 	Timer timer;
 
 	public HomeComponent() {
@@ -197,14 +198,17 @@ public class HomeComponent extends JComponent {
 	public void showScore(Graphics2D graphics2) {
 		graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
 	    graphics2.setColor(Color.BLUE);
-	    graphics2.drawString("Score: " + score, 10, 30); // x=10, y=30
-	    graphics2.drawString("Level: " + level.getLevel(), 1370, 30);
+	    graphics2.drawString("Score: " + score, 1350, 30); // x=10, y=30
+	    graphics2.drawString("Level: " + level.getLevel(), 10, 30);
+	    graphics2.drawString("High Score: " + high_score, 1275, 65);
+	    
 	}
 	public void showLives(Graphics2D graphics2) {
 		int lives = Luke.health;
 		graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
 	    graphics2.setColor(Color.BLUE);
 	    graphics2.drawString("Lives: " + lives, 10, 65);
+	    
 	}
 	
 	private boolean LukeisCollidingWithWall() {
@@ -228,6 +232,7 @@ public class HomeComponent extends JComponent {
         enemies = new Enemies(1);
         level.reset();
         System.out.println(level.getLevel());
+        if (score> high_score) high_score = score;
         score = 0;
     }
 	public int getScore() {
