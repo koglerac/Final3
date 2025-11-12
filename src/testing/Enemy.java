@@ -112,7 +112,7 @@ public class Enemy {
 	    	    bottom >= 350 - margin && top <= 350 + margin) {
 	    	    x = ogX;
 	    	    y = ogY + 2;
-	    	    System.out.println("top left");
+	    	    //System.out.println("top left");
 	    	}
 
 	    	// bottom-left
@@ -120,7 +120,7 @@ public class Enemy {
 	    	         bottom >= 525 - margin && top <= 525 + margin) {
 	    	    x = ogX;
 	    	    y = ogY - 2;
-	    	    System.out.println("bottom left");
+	    	    //System.out.println("bottom left");
 	    	}
 
 	    	// top-right
@@ -128,7 +128,7 @@ public class Enemy {
 	    	         bottom >= 350 - margin && top <= 350 + margin) {
 	    	    x = ogX;
 	    	    y = ogY + 2;
-	    	    System.out.println("top right");
+	    	    //System.out.println("top right");
 	    	}
 
 	    	// bottom-right
@@ -136,7 +136,7 @@ public class Enemy {
 	    	         bottom >= 525 - margin && top <= 525 + margin) {
 	    	    x = ogX;
 	    	    y = ogY - 2;
-	    	    System.out.println("bottom right");
+	    	    //System.out.println("bottom right");
 	    	}
 	    	else {
 	        if (x>750) x=ogX+1;
@@ -152,7 +152,7 @@ public class Enemy {
 	    		dy = -dy;
 	    		health = health - 1;
 	    		invincible = true;
-	    		itimer = 100;
+	    		itimer = 50;
 	    	}
 	    	if (health <= 0) {
 	    		alive = false;
