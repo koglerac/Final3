@@ -86,7 +86,7 @@ public class Weapon {
             spinTimer--;
             if (spinTimer <= 0) {
                 spinning = false;
-                spinCooldown = 100;
+                spinCooldown = 500;
             }
         }
         else if (spinCooldown > 0) {

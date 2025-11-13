@@ -36,6 +36,7 @@ public class HomeComponent extends JComponent {
 	public int score = 0;
 	public int high_score = 0;
 	Timer timer;
+	private Sandies sandies = new Sandies(20);
 
 	public HomeComponent() {
 		this.setPreferredSize(new Dimension(WIDTH,HEIGHT));
@@ -138,6 +139,7 @@ public class HomeComponent extends JComponent {
         showLives(g2);
         showSpin(g2);
         Sandstorm(g2);
+        if (level.level%2==0) sandies.draw(g2);
         //Draw lightsaber hitbox for testing
         g2.setColor(Color.RED);
         g2.draw(lightsaber.shape);
@@ -158,12 +160,19 @@ public class HomeComponent extends JComponent {
 	    				e.x -= -randX;
 	    				e.y -= -randY;
 	    			}
+	    			for(Sandy sa: Sandies.sandies) {
+	    				sa.x-=randX;
+	    				sa.y-=randY;
+	    			}
 	    				
 	    		}
 	    			graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
 	    		    graphics2.setColor(Color.BLUE);
 	    		    graphics2.drawString("SANDSTORM!!", 10, 100); // x=10, y=30
 	    }
+		else {
+			sandies.reset();
+		}
 	}		
 	
 	
@@ -175,7 +184,7 @@ public class HomeComponent extends JComponent {
 	        BGsprite = null;
 	    }
 	}
-
+	
 	public void background(Graphics2D graphics2) {
 	    if (BGsprite != null) {
 	        graphics2.drawImage(BGsprite, 0, 0, 1500, 900, null);
