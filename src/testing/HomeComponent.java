@@ -141,8 +141,8 @@ public class HomeComponent extends JComponent {
         Sandstorm(g2);
         if (level.level%2==0) sandies.draw(g2);
         //Draw lightsaber hitbox for testing
-//        g2.setColor(Color.RED);
-//        g2.draw(lightsaber.shape);
+        g2.setColor(Color.RED);
+        g2.draw(lightsaber.shape);
 	}
 	
 	
@@ -150,15 +150,25 @@ public class HomeComponent extends JComponent {
 		Random rand = new Random();
 		int randX = rand.nextInt(4);
 		int randY = rand.nextInt(4);
+		int ogX = luke.x;
+		int ogY = luke.y;
 		
 		if (level.level%2==0) {
 			int randomNum = rand.nextInt(2);
 	    		if (randomNum == 1) {
 	    			luke.x=luke.x-randX;
 	    			luke.y=luke.y-randY;
+	    			if (LukeisCollidingWithWall()) {
+	    		        // revert to previous position
+	    		        luke.x = ogX;
+	    		        luke.y = ogY;
+	    		        luke.updateShape();
+	    		    }
 	    			for(Enemy e:Enemies.enemies) {
 	    				e.x -= -randX;
 	    				e.y -= -randY;
+	    				e.collision(house, luke, lightsaber, this);
+	    				
 	    			}
 	    			for(Sandy sa: Sandies.sandies) {
 	    				sa.x-=randX;
@@ -209,9 +219,9 @@ public class HomeComponent extends JComponent {
 	public void showScore(Graphics2D graphics2) {
 		graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
 	    graphics2.setColor(Color.BLUE);
-	    graphics2.drawString("Score: " + score, 1350, 30); // x=10, y=30
+	    graphics2.drawString("Score: " + score, 1275, 30); // x=10, y=30
 	    graphics2.drawString("Level: " + level.getLevel(), 10, 30);
-	    graphics2.drawString("High Score: " + high_score, 1275, 65);
+	    graphics2.drawString("High Score: " + high_score, 1200, 65);
 	    
 	}
 	public void showLives(Graphics2D graphics2) {
