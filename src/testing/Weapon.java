@@ -3,6 +3,7 @@ package testing;
 import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Weapon {
-	private final int damage = 1;
+	private int damage;
 	private boolean spriteLoaded = false;
 	private BufferedImage sprite;
 	int x;
@@ -20,6 +21,9 @@ public class Weapon {
 	int swingspeed = 2;
 	public Shape shape;
 	double saberangle = 0;
+	boolean spinning = false;
+	int spinTimer;
+	int spinCooldown = 0;
 	
 	public Weapon(Luke luke) {
 		this.x = luke.x - width / 2;
@@ -49,9 +53,17 @@ public class Weapon {
 	}
 	
 	private void updateShape(Luke luke) {
-		shape = new Rectangle2D.Double(luke.x - width / 2, luke.y - luke.radius*2 - height / 2, width, height);
-		AffineTransform rotate = AffineTransform.getRotateInstance(saberangle, luke.x, luke.y);
-		shape = rotate.createTransformedShape(shape);
+		if (spinning) {
+			damage = 2;
+			shape = new Ellipse2D.Double(luke.x - luke.radius * 2, luke.y - luke.radius * 2, luke.radius * 4, luke.radius * 4);
+//			System.out.println("Spinning");
+		}
+		else {
+			damage = 1;
+			shape = new Rectangle2D.Double(luke.x - width / 2, luke.y - luke.radius*2 - height / 2, width, height);
+			AffineTransform rotate = AffineTransform.getRotateInstance(saberangle, luke.x, luke.y);
+			shape = rotate.createTransformedShape(shape);
+		}
 	}
 	
 	public Shape getShape() {
@@ -62,4 +74,28 @@ public class Weapon {
 		return damage;
 	}
 	
+	public void Spin() {
+		if (!spinning && spinCooldown <= 0) {
+		spinTimer = 50;
+		spinning = true;
+		}
+	}
+	
+	public void tick(Luke luke) {
+        if (spinning) {
+            spinTimer--;
+            if (spinTimer <= 0) {
+                spinning = false;
+                spinCooldown = 100;
+            }
+        }
+        else if (spinCooldown > 0) {
+        	spinCooldown--;
+        }
+        updateShape(luke);
+    }
+	
+	public boolean canSpin() {
+		return !spinning && spinCooldown == 0;
+	}
 }

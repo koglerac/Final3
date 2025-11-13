@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 
 
 
+
+
 public class LukeGamePanel extends JPanel {
 
 	private final HomeComponent canvas = new HomeComponent();
@@ -34,7 +36,7 @@ public class LukeGamePanel extends JPanel {
                 case KeyEvent.VK_UP -> canvas.setMovingUp(true);
                 case KeyEvent.VK_DOWN -> canvas.setMovingDown(true);
                 case KeyEvent.VK_ESCAPE -> pause();
-                //case KeyEvent.VK_SPACE -> canvas.lightsaberSwing(true);
+                case KeyEvent.VK_SPACE -> canvas.lightsaberSpin(true);
 	        	}
 	        }
 	        

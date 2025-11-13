@@ -58,6 +58,7 @@ public class HomeComponent extends JComponent {
 		        luke.updateShape();
 		    }
 		    lightsaber.updatePos(luke, movingLeft, movingRight, movingUp, movingDown);
+		    lightsaber.tick(luke);
 		    milks.collideWithMilk(luke);
 		    enemies.follow(luke, house, lightsaber, this);
 		    enemies.EnemyIsCollidingWithEnemy();
@@ -137,8 +138,8 @@ public class HomeComponent extends JComponent {
         showLives(g2);
         Sandstorm(g2);
         //Draw lightsaber hitbox for testing
-//        g2.setColor(Color.RED);
-//        g2.draw(lightsaber.shape);
+        g2.setColor(Color.RED);
+        g2.draw(lightsaber.shape);
 	}
 	
 	
@@ -245,4 +246,5 @@ public class HomeComponent extends JComponent {
 	public void setMovingRight(boolean b) { movingRight = b; }
 	public void setMovingUp(boolean b)    { movingUp = b; }
 	public void setMovingDown(boolean b)  { movingDown = b; }
+	public void lightsaberSpin(boolean b) {	lightsaber.Spin(); }
 }

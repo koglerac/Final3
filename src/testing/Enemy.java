@@ -150,7 +150,7 @@ public class Enemy {
 	    	if (!invincible) {
 	    		dx = -dx;
 	    		dy = -dy;
-	    		health = health - 1;
+	    		health = health - lightsaber.getDamage();
 	    		invincible = true;
 	    		itimer = 50;
 	    	}
