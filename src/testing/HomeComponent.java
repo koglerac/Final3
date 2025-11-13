@@ -136,6 +136,7 @@ public class HomeComponent extends JComponent {
         milks.draw(g2);
         showScore(g2);
         showLives(g2);
+        showSpin(g2);
         Sandstorm(g2);
         //Draw lightsaber hitbox for testing
         g2.setColor(Color.RED);
@@ -210,6 +211,19 @@ public class HomeComponent extends JComponent {
 	    graphics2.setColor(Color.BLUE);
 	    graphics2.drawString("Lives: " + lives, 10, 65);
 	    
+	}
+	
+	public void showSpin(Graphics2D graphics2) {
+		if (lightsaber.canSpin()) {
+			graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
+			graphics2.setColor(Color.BLUE);
+		    graphics2.drawString("Can Spin", 1275, 100);
+		}
+		else {
+			graphics2.setFont(new Font("Verdana", Font.BOLD, 25));
+			graphics2.setColor(Color.BLUE);
+		    graphics2.drawString("Can't Spin", 1275, 100);
+		}
 	}
 	
 	private boolean LukeisCollidingWithWall() {
