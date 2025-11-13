@@ -141,8 +141,8 @@ public class HomeComponent extends JComponent {
         Sandstorm(g2);
         if (level.level%2==0) sandies.draw(g2);
         //Draw lightsaber hitbox for testing
-        g2.setColor(Color.RED);
-        g2.draw(lightsaber.shape);
+//        g2.setColor(Color.RED);
+//        g2.draw(lightsaber.shape);
 	}
 	
 	

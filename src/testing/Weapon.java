@@ -16,8 +16,8 @@ public class Weapon {
 	private BufferedImage sprite;
 	int x;
 	int y;
-	int width = 15;
-	int height = 30;
+	int width = 20;
+	int height = 40;
 	int swingspeed = 2;
 	public Shape shape;
 	double saberangle = 0;
@@ -29,7 +29,7 @@ public class Weapon {
 		this.x = luke.x - width / 2;
 		this.y = luke.y - 2 * luke.radius - height / 2;
 		try {
-            sprite = ImageIO.read(Luke.class.getResource("Blue_Lightsaber.png"));
+            sprite = ImageIO.read(Luke.class.getResource("Blue Lightsaber.png"));
             spriteLoaded = (sprite != null);
         } catch (IOException | IllegalArgumentException ex) {
             spriteLoaded = false;
