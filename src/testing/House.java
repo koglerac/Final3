@@ -5,10 +5,15 @@ import java.awt.Graphics;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-
+/**
+ * Represents a house with walls that can block movement in the game.
+ * @author andresma
+ */
 public class House {
+	//List of walls that make up the house
 	private ArrayList<Shape> walls;
 	
+	//Construct House object and initialize walls
 	public House(){
 		this.walls = new ArrayList<>();
 		walls.add(new Rectangle2D.Double(600, 325, 300, 25));      
@@ -23,6 +28,7 @@ public class House {
 		return walls;
 	}
 
+	//draws and fills rectangles making up walls
 	public void draw(Graphics g) {
 		Color og = g.getColor();
 	

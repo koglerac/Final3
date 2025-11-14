@@ -2,23 +2,28 @@ package testing;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-
+/**
+ * Manages a collection of Enemy objects
+ * @author andresma
+ */
 public class Enemies {
 
+	//List of all enemies
 	public static ArrayList<Enemy> enemies;
-	private HomeComponent home; // reference to main component
-
 	
+	//reference to main component
+	private HomeComponent home; 
+
+	//Creates a new enemy manager and spawns the given number of enemies.
 	public Enemies(int num) {
 		enemies = new ArrayList<>();
-		//this.home = home;
 		for (int i = 0; i < num; i++) {
 			Enemy enemy = new Enemy();
 			enemies.add(enemy);
 		}
 	}
 	
-
+	//draws all enemies in list
 	public void draw(Graphics2D g2) {
 		// TODO Auto-generated method stub
 		for (Enemy En : enemies) {
@@ -27,7 +32,9 @@ public class Enemies {
 		}
 	}
 
-
+	/**Updates all enemies by making them chase Luke, handle wall collisions,
+     * process lightsaber hits, and remove dead enemies.
+	 */
 	public void follow(Luke luke, House house, Weapon lightsaber, HomeComponent home) {
 		for (Enemy En : enemies) {
 			En.collision(house, luke, lightsaber, home);
@@ -42,12 +49,15 @@ public class Enemies {
 		return enemies;
 	}
 
+	//Handles enemy–enemy collision resolution
 	public void EnemyIsCollidingWithEnemy() {
 	    for (Enemy En : enemies) {
 	    	En.bump(enemies, En);
 	    }
 	    
 	}
+	
+	//Checks whether Luke collides with any enemy.
 	public void LukeisCollidingWithEnemy(Luke luke, HomeComponent home) {
 	    for (Enemy en : enemies) {
 	    	//edited chat code for luke instead of alternate enemies
@@ -64,7 +74,7 @@ public class Enemies {
 	        }
 	    }
 
-
+	//Sets all enemy speeds to the given value.
 	public void setSpeed(int speed) {
 		for (Enemy en: enemies) {
 			en.dx=0;
@@ -72,7 +82,7 @@ public class Enemies {
 		}
 	}
 	
-
+	//Checks whether the player has defeated all enemies.
 	public boolean checkIfWon() {
 		if (enemies.size() == 0) {
 			return true;
@@ -81,11 +91,7 @@ public class Enemies {
 		}
 	}
 
-//	public int removeDeadEnemies(int score) {
-//		enemies.removeIf(e -> !e.alive);
-//		return score++;
-//	}
-	
+	// Instantly kills all enemies without removing them.
 	public void removeAll() {
 		for (Enemy e : enemies) {
 			e.Kill();
