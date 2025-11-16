@@ -25,7 +25,7 @@ import javax.swing.Timer;
  *
  * @author andresma
  * @author koglerac
- * @author rhit-bettenc1
+ * @author bettenc1
  */
 
 

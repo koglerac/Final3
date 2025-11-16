@@ -9,7 +9,11 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-
+/**
+ * Creates the weapon (lightsaber) and handles its movement
+ * 
+ * @author bettenc1
+ */
 public class Weapon {
 	private int damage;
 	private boolean spriteLoaded = false;
@@ -24,7 +28,7 @@ public class Weapon {
 	boolean spinning = false;
 	int spinTimer;
 	int spinCooldown = 0;
-	
+	// Sets the location of the lightsaber and loads its image.
 	public Weapon(Luke luke) {
 		this.x = luke.x - width / 2;
 		this.y = luke.y - 2 * luke.radius - height / 2;
@@ -36,6 +40,7 @@ public class Weapon {
         }
 		updateShape(luke);
 	}
+	//Updates the position of the lightsaber, as well as the rotation angle needed for the rotating image and hitbox
 	public void updatePos(Luke luke, boolean left, boolean right, boolean up, boolean down) {
 		this.x = luke.x - width / 2;
 		this.y = luke.y - 2 * luke.radius - height / 2;
@@ -46,12 +51,13 @@ public class Weapon {
 			
 		updateShape(luke);
 	}
+	//Draws the lightsaber on the screen.
 	public void draw(Graphics g) {
 		if (spriteLoaded) { 
 			g.drawImage(sprite, x, y, width, height, null);
 		}
 	}
-	
+	//Updates the shape of the lightsaber hitbox, as well as the damage value depending on if a spin attack is used.
 	private void updateShape(Luke luke) {
 		if (spinning) {
 			damage = 2;
@@ -65,22 +71,22 @@ public class Weapon {
 			shape = rotate.createTransformedShape(shape);
 		}
 	}
-	
+	//Returns the lightsaber shape.
 	public Shape getShape() {
 		return shape;
 	}
-	
+	//Returns the lightsaber damage
 	public int getDamage() {
 		return damage;
 	}
-	
+	//If Luke is not using a spin attack and the attack is off cooldown, start a spin attack.
 	public void Spin() {
 		if (!spinning && spinCooldown <= 0) {
 		spinTimer = 50;
 		spinning = true;
 		}
 	}
-	
+	//Ticks down the timer for the duration of Luke's spin attack, as well as starting and decrementing the spin cooldown
 	public void tick(Luke luke) {
         if (spinning) {
             spinTimer--;

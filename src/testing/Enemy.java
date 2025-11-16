@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
  * hit by the lightsaber, and interacts with other enemies.
  * 
  * @author andresma
+ * @author bettenc1
  */
 public class Enemy {
 	private BufferedImage sprite;
