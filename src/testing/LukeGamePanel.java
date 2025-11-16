@@ -6,15 +6,19 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.JPanel;
 
-
-
-
+/**
+ * Describes Luke's movements and basic game mechanics.
+ * 
+ * @author andresma, koglerac
+ */
 
 public class LukeGamePanel extends JPanel {
 
 	private final HomeComponent canvas = new HomeComponent();
 	private boolean pause = false;
 	
+	
+	//adds Luke to game screen
 	public LukeGamePanel() {
     	this.setLayout(new BorderLayout(8, 8));
         this.add(canvas, BorderLayout.CENTER);
@@ -23,6 +27,7 @@ public class LukeGamePanel extends JPanel {
     	
     }
 	    
+	//Assigns movement keys to Luke's sprite
 	private void buildKeys() {
 		
 		this.setFocusable(true);
@@ -53,13 +58,15 @@ public class LukeGamePanel extends JPanel {
 	    });
 		
 }
-
+	//flips when game ends
 	public boolean getGameOver() {
 		if (canvas.gameOver == false) {
 			return false;
 		}
 		return true;
 	}
+
+	//optional game pause
 	private void pause() {
 		if (pause == true) {
 			canvas.timer.start();

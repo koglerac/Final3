@@ -3,6 +3,11 @@ package testing;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+/**
+ * Creates display window for game.
+ * 
+ * @author andresma
+ */
 public class FinalApp {
 	private final JFrame frame = new JFrame("Tatoonie");
 	private final LukeGamePanel panel = new LukeGamePanel();

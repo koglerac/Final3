@@ -24,8 +24,8 @@ import javax.swing.Timer;
  * progression, and special effects such as the sandstorm.
  *
  * @author andresma
- * @author 
- * @author
+ * @author koglerac
+ * @author rhit-bettenc1
  */
 
 

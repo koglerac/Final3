@@ -9,12 +9,18 @@ import java.util.Random;
 
 import javax.imageio.ImageIO;
 
+/**
+ * Describes behavior of sand pieces during sandstorm mode.
+ * 
+ * @author andresma, koglerac
+ */
 public class Sandy {
 	public int x,y, radius;
 	private boolean spriteLoaded = false;
 	private BufferedImage sprite;
 	Random rand = new Random();
 	
+	//assigns size and location to each sand particle
 	public Sandy() {
 		this.x=rand.nextInt(2000);
 		this.y=rand.nextInt(1200);
@@ -28,6 +34,7 @@ public class Sandy {
 				
 	}
 	
+	//draws each sand particle
 	 public void draw(Graphics g) {
 		
 			if (spriteLoaded) {  
@@ -42,6 +49,7 @@ public class Sandy {
 	    
 	 }}
 
+	 //randomizes location
 	 public void reset() {
 		 this.x=rand.nextInt(1500);
 		this.y=rand.nextInt(900);

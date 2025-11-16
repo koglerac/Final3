@@ -7,6 +7,12 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
+/**
+ * Creates player Luke with dimensions and location.
+ * 
+ * @author andresma, koglerac
+ */
+
 public class Luke {
 	int x, y;
     int dx = 0, dy = 0;
@@ -16,6 +22,7 @@ public class Luke {
     private boolean spriteLoaded = false;
     public Shape shape;   
 	
+    //describes Luke's position
     public Luke(int x, int y) {
         this.x = x;
         this.y = y;
@@ -28,6 +35,7 @@ public class Luke {
         updateShape();
     }
     
+    //draws Luke
     public void draw(Graphics g) {
     	if (spriteLoaded) {  
     		int drawX = x - radius; 
@@ -38,15 +46,18 @@ public class Luke {
     		g.fillOval(x - radius, y - radius, radius * 2, radius * 2);
     	}
     }
-
+    
+    //create sprite shape
 	public void updateShape() {
 		shape = new Ellipse2D.Double(x - radius, y - radius, 2 * radius, 2 * radius);
 	}
 	
+	//returns sprite shape
 	public Shape getShape() {
         return shape;
     }
 
+	//resets Luke's position
 	public void reset(int x, int y, HomeComponent home) {
 		    this.x = x;
 		    this.y = y;
