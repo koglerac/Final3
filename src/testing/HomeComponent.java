@@ -29,6 +29,7 @@ import javax.swing.Timer;
  */
 
 
+
 public class HomeComponent extends JComponent {
 	//Main character Luke
 	private Luke luke = new Luke(WIDTH/2,HEIGHT/2);
